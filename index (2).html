@@ -1,0 +1,49 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Management Tool</title>
+</head>
+<body>
+    <h1>Welcome to the Project Management Tool</h1>
+
+    <h2>Create User</h2>
+    <form method="POST" action="/create_user">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Create User</button>
+    </form>
+
+    <h2>Create Task</h2>
+    <form method="POST" action="/create_task">
+        <label for="title">Task Title:</label>
+        <input type="text" id="title" name="title" required><br>
+        <label for="description">Task Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea><br>
+        <label for="assignee">Assignee Username:</label>
+        <input type="text" id="assignee" name="assignee" required><br>
+        <label for="creator">Creator Username:</label>
+        <input type="text" id="creator" name="creator" required><br>
+        <button type="submit">Create Task</button>
+    </form>
+
+    <h2>Users</h2>
+    <ul>
+        {% for user in users %}
+        <li>{{ user.username }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <strong>{{ task.title }}</strong><br>
+            Description: {{ task.description }}<br>
+            Assignee: {{ task.assignee.username }}<br>
+            Creator: {{ task.creator.username }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
